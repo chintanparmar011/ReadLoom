@@ -1,1 +1,1 @@
-web: gunicorn ReadLoom.wsgi
+web: gunicorn readloom.wsgi:application --bind 0.0.0.0:$PORT

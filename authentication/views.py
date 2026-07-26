@@ -153,9 +153,8 @@ def logout_view(request):
     return redirect('login')
 
 def redirect_by_role(user):
-    if user.is_superuser:
-        return redirect('admin_dashboard')
-    elif user.user_type == 'author':
+    
+    if user.user_type == 'author':
         return redirect('author_dashboard')
     else:
         return redirect('dashboard')

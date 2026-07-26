@@ -248,7 +248,7 @@ def browse_books(request):
         is_featured=False
     ).order_by('-created_at')[:10]
     featured_books = Book.objects.filter(
-        status='approved',
+        status='approveed',
         is_featured=True
     ).order_by('-created_at')[:10]
 
