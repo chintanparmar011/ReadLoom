@@ -4,6 +4,10 @@ from authentication.models import CustomUser
 from PyPDF2 import PdfReader
 from django.db.models import Avg
 from readloom import settings
+from cloudinary_storage.storage import (
+    MediaCloudinaryStorage,
+    RawMediaCloudinaryStorage,
+)
 
 class Book(models.Model):
 
@@ -40,9 +44,14 @@ class Book(models.Model):
         related_name='books'
     )
 
-    book_file = models.FileField(upload_to='books/')
-    cover_image = models.ImageField(upload_to='covers/')
-
+    book_file = models.FileField(
+    upload_to="books/",
+    storage=RawMediaCloudinaryStorage()
+    )
+    cover_image = models.ImageField(
+    upload_to="covers/",
+    storage=MediaCloudinaryStorage(),
+    )
     total_pages = models.IntegerField(default=0,blank=True)
 
     status = models.CharField(

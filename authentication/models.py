@@ -1,7 +1,7 @@
 
 from django.contrib.auth.models import BaseUserManager, AbstractUser
 from django.db import models
-
+from cloudinary_storage.storage import MediaCloudinaryStorage
 class CustomUserManager(BaseUserManager):
     use_in_migrations = True
 
@@ -58,7 +58,7 @@ class CustomUser(AbstractUser):
 class Badge(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
-    icon = models.ImageField(upload_to="badges/", blank=True)
+    icon = models.ImageField(upload_to="badges/",storage=MediaCloudinaryStorage(),blank=True)
     condition_type = models.CharField(max_length=50)
     condition_value = models.IntegerField()
 

@@ -15,7 +15,6 @@ import os
 from dotenv import load_dotenv
 import mimetypes
 
-
 mimetypes.add_type("application/javascript", ".mjs", True)
 
 # Load environment variables from .env file
@@ -38,7 +37,8 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
-    
+    'cloudinary_storage',
+    'cloudinary',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -88,6 +88,12 @@ WSGI_APPLICATION = 'readloom.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
+    "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
+}
+
 
 DATABASES = {
     'default': {
@@ -140,10 +146,6 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
 
   # The URL where users are redirected to log in
 LOGIN_URL = '/authentication/login/'
