@@ -83,9 +83,10 @@ class Book(models.Model):
         # Only calculate pages when book is newly uploaded
         if is_new and self.book_file:
             try:
-                pdf_path = self.book_file.path
-                reader = PdfReader(pdf_path)
+                self.book_file.open("rb")
+                reader = PdfReader(self.book_file)
                 self.total_pages = len(reader.pages)
+                self.book_file.close()
 
                 # update only total_pages (avoid recursion)
                 Book.objects.filter(pk=self.pk).update(
