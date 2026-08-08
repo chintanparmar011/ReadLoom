@@ -8,7 +8,12 @@ from cloudinary_storage.storage import (
     MediaCloudinaryStorage,
     RawMediaCloudinaryStorage,
 )
+from django.core.exceptions import ValidationError
 
+def validate_pdf_size(value):
+        max_size_mb = 9
+        if value.size > max_size_mb * 1024 * 1024:
+            raise ValidationError(f'PDF file too large. Max size is {max_size_mb}MB.')
 class Book(models.Model):
 
     STATUS_CHOICES = (
@@ -46,7 +51,8 @@ class Book(models.Model):
 
     book_file = models.FileField(
     upload_to="books/",
-    storage=RawMediaCloudinaryStorage()
+    storage=RawMediaCloudinaryStorage(),
+    validators=[validate_pdf_size]
     )
     cover_image = models.ImageField(
     upload_to="covers/",

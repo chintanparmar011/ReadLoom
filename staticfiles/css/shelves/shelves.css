@@ -1,0 +1,723 @@
+/* ===== SHELVES PAGE STYLING ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@400;700&display=swap');
+
+/* ===== SHELVES WRAPPER - TWO COLUMN LAYOUT ===== */
+
+.shelves-wrapper {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 40px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ===== LEFT SIDEBAR - SHELVES LIST ===== */
+
+.shelves-left {
+    position: sticky;
+    top: 100px;
+    height: fit-content;
+}
+
+.shelves-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    gap: 12px;
+}
+
+.shelves-header h2 {
+    font-family: 'Lora', serif;
+    font-size: 1.6rem;
+    color: #1a1a1a;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin: 0;
+}
+
+.create-shelf-btn {
+    background: #800000;
+    color: #ffffff;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(128, 0, 0, 0.15);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    white-space: nowrap;
+}
+
+.create-shelf-btn:hover {
+    background: #630d16;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(128, 0, 0, 0.25);
+}
+
+.shelf-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.shelf-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 14px;
+    background: #ffffff;
+    border: 1.5px solid #f0f0f0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: #4b5563;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.shelf-list li:hover {
+    border-color: #800000;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f7f4 100%);
+    transform: translateX(4px);
+}
+
+.shelf-list li.active {
+    background: linear-gradient(135deg, #800000 0%, #630d16 100%);
+    color: #ffffff;
+    border-color: #800000;
+    box-shadow: 0 4px 12px rgba(128, 0, 0, 0.2);
+    font-weight: 600;
+}
+
+.shelf-list li span {
+    flex: 1;
+    cursor: pointer;
+    user-select: none;
+}
+
+.delete-shelf-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.1rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    flex-shrink: 0;
+}
+
+.delete-shelf-btn:hover {
+    opacity: 1;
+    background: rgba(220, 38, 38, 0.1);
+    transform: scale(1.2);
+}
+
+.empty-shelf {
+    color: #9ca3af;
+    font-style: italic;
+    text-align: center;
+    padding: 20px 12px !important;
+    border: 1.5px dashed #e5e7eb !important;
+    cursor: default !important;
+}
+
+.empty-shelf:hover {
+    background: #ffffff !important;
+    border-color: #e5e7eb !important;
+    transform: none !important;
+}
+
+/* ===== RIGHT SECTION - BOOKS GRID ===== */
+
+.shelves-right {
+    animation: slideInRight 0.6s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.shelves-right h2 {
+    font-family: 'Lora', serif;
+    font-size: 1.8rem;
+    color: #1a1a1a;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin: 0 0 32px 0;
+    padding-bottom: 16px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+/* ===== BOOK GRID (SHARED STYLING) ===== */
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 24px;
+    animation: slideInUp 0.6s ease-out 0.1s both;
+}
+
+.empty-books-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f8f7f4 0%, #ffffff 100%);
+    border: 1.5px dashed #e5e7eb;
+    border-radius: 10px;
+    color: #6b7280;
+    font-size: 1rem;
+    line-height: 1.6;
+    animation: slideInDown 0.5s ease-out;
+}
+
+@keyframes slideInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.book-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.book-card:nth-child(1) { animation-delay: 0.05s; }
+.book-card:nth-child(2) { animation-delay: 0.1s; }
+.book-card:nth-child(3) { animation-delay: 0.15s; }
+.book-card:nth-child(4) { animation-delay: 0.2s; }
+.book-card:nth-child(5) { animation-delay: 0.25s; }
+.book-card:nth-child(6) { animation-delay: 0.3s; }
+.book-card:nth-child(7) { animation-delay: 0.35s; }
+.book-card:nth-child(8) { animation-delay: 0.4s; }
+.book-card:nth-child(n+9) { animation-delay: 0.45s; }
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.book-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    margin-bottom: 12px;
+    transition: all 0.3s ease;
+    border: 1px solid #f0f0f0;
+}
+
+.book-card:hover img {
+    box-shadow: 0 8px 20px rgba(128, 0, 0, 0.12);
+    transform: translateY(-4px);
+    border-color: #e5e7eb;
+}
+
+.book-card h4 {
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    color: #1a1a1a;
+    font-weight: 700;
+    margin: 0 0 4px 0;
+    letter-spacing: -0.2px;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.book-card p {
+    font-size: 0.8rem;
+    color: #6b7280;
+    margin: 0;
+    font-weight: 500;
+}
+
+.card-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ===== MODAL STYLING ===== */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    animation: fadeIn 0.3s ease-out;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.active,
+.modal[style*="display: block"] {
+    display: flex;
+}
+
+.modal-content {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 32px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    max-width: 400px;
+    width: 90%;
+    animation: slideUp 0.4s ease-out;
+    position: relative;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-content h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.4rem;
+    color: #1a1a1a;
+    font-weight: 700;
+    margin: 0 0 20px 0;
+    letter-spacing: -0.3px;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-family: 'Inter', sans-serif;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+    background: #ffffff;
+}
+
+.modal-content input::placeholder {
+    color: #9ca3af;
+}
+
+.modal-content input:focus {
+    outline: none;
+    border-color: #800000;
+    box-shadow: 0 0 0 3px rgba(128, 0, 0, 0.1);
+    background: #ffffff;
+}
+
+.modal-content button {
+    width: 100%;
+    padding: 12px 16px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 8px;
+}
+
+.modal-content button:nth-of-type(1),
+.modal-content button[type="submit"]:first-of-type {
+    background: #800000;
+    color: #ffffff;
+    box-shadow: 0 2px 8px rgba(128, 0, 0, 0.15);
+}
+
+.modal-content button:nth-of-type(1):hover,
+.modal-content button[type="submit"]:first-of-type:hover {
+    background: #630d16;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(128, 0, 0, 0.25);
+}
+
+.modal-content button:nth-of-type(2),
+.modal-content button[type="button"] {
+    background: #f3f4f6;
+    color: #4b5563;
+}
+
+.modal-content button:nth-of-type(2):hover,
+.modal-content button[type="button"]:hover {
+    background: #e5e7eb;
+    transform: translateY(-1px);
+}
+
+/* ===== ADD TO SHELF PAGE ===== */
+
+.add-shelf-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    animation: slideInUp 0.6s ease-out;
+}
+
+.add-shelf-wrapper h2 {
+    font-family: 'Lora', serif;
+    font-size: 2rem;
+    color: #1a1a1a;
+    font-weight: 700;
+    margin: 0 0 32px 0;
+    letter-spacing: -0.5px;
+}
+
+.add-shelf-wrapper form {
+    animation: slideInUp 0.6s ease-out 0.1s both;
+}
+
+.add-shelf-wrapper form button[type="submit"] {
+    width: 100%;
+    background: #800000;
+    color: #ffffff;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    box-shadow: 0 2px 8px rgba(128, 0, 0, 0.15);
+}
+
+.add-shelf-wrapper form button[type="submit"]:hover {
+    background: #630d16;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(128, 0, 0, 0.25);
+}
+
+.shelf-select-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 32px 0;
+    animation: slideInUp 0.6s ease-out;
+}
+
+.shelf-select-list form {
+    animation: slideInUp 0.6s ease-out 0.1s both;
+}
+
+.shelf-option {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px;
+    background: #ffffff;
+    border: 1.5px solid #e5e7eb;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    color: #4b5563;
+    position: relative;
+}
+
+.shelf-option:hover {
+    border-color: #800000;
+    background: linear-gradient(135deg, #ffffff 0%, #f8f7f4 100%);
+    transform: translateX(4px);
+}
+
+.shelf-option input[type="radio"]:checked + label {
+    color: #800000;
+    font-weight: 600;
+}
+
+.shelf-option input[type="radio"] {
+    margin-right: 12px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: #800000;
+    flex-shrink: 0;
+}
+
+.shelf-option input[type="radio"]:checked {
+    accent-color: #800000;
+}
+
+/* ===== NO SHELF MESSAGE ===== */
+
+.no-shelf {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(135deg, #f8f7f4 0%, #ffffff 100%);
+    border: 1.5px dashed #e5e7eb;
+    border-radius: 10px;
+    margin: 40px 0;
+}
+
+.no-shelf p {
+    font-size: 1rem;
+    color: #6b7280;
+    margin: 0 0 16px 0;
+    line-height: 1.6;
+}
+
+.no-shelf p:first-of-type {
+    font-weight: 600;
+    color: #1a1a1a;
+}
+
+.no-shelf a {
+    display: inline-block;
+    margin-top: 24px;
+    background: #800000;
+    color: #ffffff;
+    padding: 12px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(128, 0, 0, 0.15);
+}
+
+.no-shelf a:hover {
+    background: #630d16;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(128, 0, 0, 0.25);
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+@media (max-width: 1024px) {
+    .shelves-wrapper {
+        grid-template-columns: 220px 1fr;
+        gap: 30px;
+    }
+
+    .shelves-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .shelves-right h2 {
+        font-size: 1.5rem;
+    }
+
+    .book-grid {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+        gap: 18px;
+    }
+
+    .book-card img {
+        height: 180px;
+    }
+
+    .book-card h4 {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .shelves-wrapper {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .shelves-left {
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .shelves-header {
+        flex-wrap: wrap;
+    }
+
+    .shelves-header h2 {
+        width: 100%;
+        font-size: 1.4rem;
+    }
+
+    .create-shelf-btn {
+        width: 100%;
+    }
+
+    .shelf-list {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+
+    .shelves-right h2 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+    }
+
+    .book-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 16px;
+    }
+
+    .book-card img {
+        height: 160px;
+    }
+
+    .modal-content {
+        width: 85%;
+        padding: 24px;
+    }
+
+    .add-shelf-wrapper {
+        margin: 0;
+    }
+
+    .add-shelf-wrapper h2 {
+        font-size: 1.4rem;
+        margin-bottom: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .shelves-left,
+    .shelves-right {
+        width: 100%;
+    }
+
+    .shelves-header h2 {
+        font-size: 1.2rem;
+    }
+
+    .shelves-header {
+        gap: 8px;
+    }
+
+    .create-shelf-btn {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+
+    .shelves-right h2 {
+        font-size: 1.1rem;
+        margin-bottom: 16px;
+    }
+
+    .book-grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        gap: 12px;
+    }
+
+    .book-card img {
+        height: 140px;
+    }
+
+    .book-card h4 {
+        font-size: 0.8rem;
+    }
+
+    .book-card p {
+        font-size: 0.7rem;
+    }
+
+    .shelf-list li {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+
+    .shelf-option {
+        padding: 12px 12px;
+        font-size: 0.9rem;
+    }
+
+    .shelf-option input[type="radio"] {
+        width: 16px;
+        height: 16px;
+        margin-right: 10px;
+    }
+
+    .modal-content {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .modal-content h3 {
+        font-size: 1.2rem;
+        margin-bottom: 16px;
+    }
+
+    .modal-content input {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+        margin-bottom: 16px;
+    }
+
+    .modal-content button {
+        padding: 10px 12px;
+        font-size: 0.8rem;
+    }
+
+    .no-shelf {
+        padding: 40px 16px;
+    }
+
+    .no-shelf p {
+        font-size: 0.9rem;
+        margin-bottom: 12px;
+    }
+
+    .no-shelf a {
+        padding: 10px 20px;
+        font-size: 0.8rem;
+        margin-top: 16px;
+    }
+}
